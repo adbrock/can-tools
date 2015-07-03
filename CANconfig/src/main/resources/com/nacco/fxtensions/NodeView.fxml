@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.TreeItemPropertyValueFactory?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="AnchorPane">
+	<TreeTableView fx:id="dictionaryTable" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
+		AnchorPane.leftAnchor="0">
+		<columns>
+			<TreeTableColumn text="Name" prefWidth="200">
+				<cellValueFactory>
+					<TreeItemPropertyValueFactory property="name" />
+				</cellValueFactory>
+			</TreeTableColumn>
+			<TreeTableColumn text="Index" prefWidth="90">
+				<cellValueFactory>
+					<TreeItemPropertyValueFactory property="index" />
+				</cellValueFactory>
+			</TreeTableColumn>
+			<TreeTableColumn text="SubIndex" prefWidth="90">
+				<cellValueFactory>
+					<TreeItemPropertyValueFactory property="index" />
+				</cellValueFactory>
+			</TreeTableColumn>
+			<TreeTableColumn text="Object Type" prefWidth="140">
+				<cellValueFactory>
+					<TreeItemPropertyValueFactory property="objectType" />
+				</cellValueFactory>
+			</TreeTableColumn>
+			<TreeTableColumn text="Data Type" prefWidth="140">
+				<cellValueFactory>
+					<TreeItemPropertyValueFactory property="dataType" />
+				</cellValueFactory>
+			</TreeTableColumn>
+			<TreeTableColumn text="Access Type" prefWidth="140">
+				<cellValueFactory>
+					<TreeItemPropertyValueFactory property="access" />
+				</cellValueFactory>
+			</TreeTableColumn>
+			<TreeTableColumn text="Minimum Value" prefWidth="140">
+				<cellValueFactory>
+					<TreeItemPropertyValueFactory property="dataType" />
+				</cellValueFactory>
+			</TreeTableColumn>
+			<TreeTableColumn text="Maximum Value" prefWidth="140">
+				<cellValueFactory>
+					<TreeItemPropertyValueFactory property="dataType" />
+				</cellValueFactory>
+			</TreeTableColumn>
+			<TreeTableColumn text="Default Value" prefWidth="140">
+				<cellValueFactory>
+					<TreeItemPropertyValueFactory property="dataType" />
+				</cellValueFactory>
+			</TreeTableColumn>
+		</columns>
+	</TreeTableView>
+</fx:root>
+
