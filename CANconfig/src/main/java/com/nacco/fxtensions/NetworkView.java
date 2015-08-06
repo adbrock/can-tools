@@ -13,8 +13,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
 
-import com.nacco.can.Network;
-import com.nacco.can.Node;
+import com.nacco.can.model.Network;
+import com.nacco.can.model.Node;
 
 public class NetworkView extends AnchorPane {
 
@@ -22,8 +22,9 @@ public class NetworkView extends AnchorPane {
 	protected TabPane networkTabPane;
 	protected Tab addNodeTab;
 
-	public NetworkView(Network network) throws IOException {
-		this.network = new SimpleObjectProperty<Network>(this, "network", network);
+	public NetworkView(ObjectProperty<Network> network) throws IOException {
+		this.network = new SimpleObjectProperty<Network>(this, "network");
+		this.network.bind(network);
 		networkTabPane = new TabPane();
 		addNodeTab = new Tab();
 
@@ -36,7 +37,7 @@ public class NetworkView extends AnchorPane {
 		addNodeTab.setClosable(false);
 		networkTabPane.getTabs().add(addNodeTab);
 
-		for (Node node : network.getNodeList()) {
+		for (Node node : network.get().getNodeList()) {
 			this.addNode(node);
 		}
 
@@ -47,11 +48,11 @@ public class NetworkView extends AnchorPane {
 			}
 		};
 		addNodeTab.setOnSelectionChanged(addNodeHandler);
-		if (network.getNodeList().size() == 0) {
+		if (network.get().getNodeList().size() == 0) {
 			addNodeHandler.handle(null);
 		}
 
-		network.getNodeList().addListener(new ListChangeListener<Node>() {
+		network.get().getNodeList().addListener(new ListChangeListener<Node>() {
 			@Override
 			public void onChanged(javafx.collections.ListChangeListener.Change<? extends Node> change) {
 				Platform.runLater(new Runnable() {

@@ -19,9 +19,9 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.AnchorPane;
 
-import com.nacco.can.MainObject;
-import com.nacco.can.Node;
-import com.nacco.can.SubObject;
+import com.nacco.can.model.MainObject;
+import com.nacco.can.model.Node;
+import com.nacco.can.model.SubObject;
 
 public class NodeView extends AnchorPane {
 

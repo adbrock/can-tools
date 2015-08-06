@@ -33,7 +33,7 @@ public class SubObject {
 		return this.subIndex.get();
 	}
 	
-	protected void setSubIndex(int subIndex) {
+	public void setSubIndex(int subIndex) {
 		this.subIndex.set(subIndex);
 	}
 	

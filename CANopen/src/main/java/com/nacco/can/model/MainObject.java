@@ -4,6 +4,7 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -17,9 +18,9 @@ public class MainObject {
 	private IntegerProperty index;
 	private ObjectProperty<ObjectType> objectType;
 	private ObjectProperty<DataType> dataType;
+	private ObjectProperty<AccessType> accessType;
 	private DoubleProperty minValue;
 	private DoubleProperty maxValue;
-
 	private ListProperty<Byte> data;
 	private ListProperty<SubObject> subObjectList;
 
@@ -27,7 +28,10 @@ public class MainObject {
 		this.name = new SimpleStringProperty(this, "name", "NewMainObject");
 		this.index = new SimpleIntegerProperty(this, "index", 0x2000);
 		this.objectType = new SimpleObjectProperty<ObjectType>(this, "objectType", ObjectType.VAR);
-
+		this.dataType = new SimpleObjectProperty<DataType>(this, "dataType", DataType.UNSIGNED);
+		this.accessType = new SimpleObjectProperty<AccessType>(this, "accessType", AccessType.RW);
+		this.minValue = new SimpleDoubleProperty(this, "minValue", 0.0);
+		this.maxValue = new SimpleDoubleProperty(this, "maxValue", 255.0);
 		this.data = new SimpleListProperty<Byte>(this, "data", FXCollections.observableArrayList());
 		this.subObjectList = new SimpleListProperty<SubObject>(this, "subObjectList", FXCollections.observableArrayList());
 	}
@@ -48,18 +52,78 @@ public class MainObject {
 		return this.index.get();
 	}
 
-	protected void setIndex(int index) {
+	public void setIndex(int index) {
 		this.index.set(index);
 	}
 
 	public IntegerProperty indexProperty() {
 		return this.index;
 	}
-	
+
+	public ObjectType getObjectType() {
+		return this.objectType.get();
+	}
+
+	public void setObjectType(ObjectType objectType) {
+		this.objectType.set(objectType);
+	}
+
+	public ObjectProperty<ObjectType> objectTypeProperty() {
+		return this.objectType;
+	}
+
+	public DataType getDataType() {
+		return this.dataType.get();
+	}
+
+	public void setDataType(DataType dataType) {
+		this.dataType.set(dataType);
+	}
+
+	public ObjectProperty<DataType> dataTypeProperty() {
+		return this.dataType;
+	}
+
+	public AccessType getAccessType() {
+		return this.accessType.get();
+	}
+
+	public void setAccessType(AccessType accessType) {
+		this.accessType.set(accessType);
+	}
+
+	public ObjectProperty<AccessType> accessTypeProperty() {
+		return this.accessType;
+	}
+
+	public double getMinValue() {
+		return this.minValue.get();
+	}
+
+	public void setMinValue(double minValue) {
+		this.minValue.set(minValue);
+	}
+
+	public DoubleProperty minValueProperty() {
+		return this.minValue;
+	}
+
+	public double getMaxValue() {
+		return this.maxValue.get();
+	}
+
+	public void setMaxValue(double maxValue) {
+		this.maxValue.set(maxValue);
+	}
+
+	public DoubleProperty maxValueProperty() {
+		return this.maxValue;
+	}
+
 	public ObservableList<Byte> getData() {
 		return this.data.get();
 	}
-	
+
 	public ListProperty<Byte> dataProperty() {
 		return this.data;
 	}
@@ -67,7 +131,7 @@ public class MainObject {
 	public ObservableList<SubObject> getSubObjectList() {
 		return this.subObjectList.get();
 	}
-	
+
 	public ListProperty<SubObject> subObjectListProperty() {
 		return this.subObjectList;
 	}

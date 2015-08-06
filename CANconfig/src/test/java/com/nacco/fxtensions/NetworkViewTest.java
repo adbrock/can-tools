@@ -4,10 +4,10 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import com.nacco.can.MainObject;
-import com.nacco.can.Network;
-import com.nacco.can.Node;
-import com.nacco.can.SubObject;
+import com.nacco.can.model.MainObject;
+import com.nacco.can.model.Network;
+import com.nacco.can.model.Node;
+import com.nacco.can.model.SubObject;
 
 public class NetworkViewTest extends Application {
 

@@ -35,7 +35,7 @@ public class Node {
 	private BooleanProperty groupMessagingSupported;
 	private BooleanProperty layerSettingServiceSupported;
 	private MapProperty<Integer, Boolean> supportedDummyMap;
-	private MapProperty<Integer, Boolean> supportedBaudrateMap;
+	private MapProperty<Baudrate, Boolean> supportedBaudrateMap;
 	private ListProperty<MainObject> mainObjectList;
 
 	public Node() {
@@ -56,7 +56,7 @@ public class Node {
 		groupMessagingSupported = new SimpleBooleanProperty(this, "groupMessagingSupported");
 		layerSettingServiceSupported = new SimpleBooleanProperty(this, "layerSettingServiceSupported");
 		supportedDummyMap = new SimpleMapProperty<Integer, Boolean>(this, "supportedDummyMap", FXCollections.observableHashMap());
-		supportedBaudrateMap = new SimpleMapProperty<Integer, Boolean>(this, "supportedBaudrateMap", FXCollections.observableHashMap());
+		supportedBaudrateMap = new SimpleMapProperty<Baudrate, Boolean>(this, "supportedBaudrateMap", FXCollections.observableHashMap());
 		mainObjectList = new SimpleListProperty<MainObject>(this, "mainObjectList", FXCollections.observableArrayList());
 	}
 
@@ -260,11 +260,11 @@ public class Node {
 		return this.supportedDummyMap;
 	}
 
-	public ObservableMap<Integer, Boolean> getSupportedBaudrateMap() {
+	public ObservableMap<Baudrate, Boolean> getSupportedBaudrateMap() {
 		return this.supportedBaudrateMap.get();
 	}
 
-	public MapProperty<Integer, Boolean> supportedBaudrateMapProperty() {
+	public MapProperty<Baudrate, Boolean> supportedBaudrateMapProperty() {
 		return this.supportedBaudrateMap;
 	}
 

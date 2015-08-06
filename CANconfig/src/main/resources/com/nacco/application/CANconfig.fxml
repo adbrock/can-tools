@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefWidth="1280" prefHeight="720" xmlns:fx="http://javafx.com/fxml/1">
+	<top>
+		<MenuBar>
+			<Menu text="File">
+				<MenuItem text="New" onAction="#handleNewAction" />
+				<MenuItem text="Open" onAction="#handleOpenAction" />
+				<MenuItem text="SaveAs" onAction="#handleSaveAsAction" />
+				<MenuItem text="Close" onAction="#handleCloseAction" />
+			</Menu>
+			<Menu text="Perspective">
+				<MenuItem text="Network" onAction="#handleShowNetworkPerspectiveAction" />
+			</Menu>
+			<Menu text="Help">
+				<MenuItem text="About" />
+			</Menu>
+		</MenuBar>
+	</top>
+	<center>
+		<BorderPane>
+			<top>
+				<HBox alignment="CENTER">
+					<padding>
+						<Insets bottom="3" left="3" right="3" top="3" />
+					</padding>
+					<HBox spacing="6" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+						<Button text="A" prefHeight="24" />
+						<Button text="B" prefHeight="24" />
+						<Button text="C" prefHeight="24" />
+					</HBox>
+					<HBox spacing="6" alignment="CENTER_RIGHT">
+						<Button text="X" prefHeight="24" onAction="#handleShowNetworkPerspectiveAction" />
+						<Button text="Y" prefHeight="24" />
+						<Button text="Z" prefHeight="24" />
+					</HBox>
+				</HBox>
+			</top>
+			<center>
+				<StackPane fx:id="mainContentPane">
+				</StackPane>
+			</center>
+		</BorderPane>
+	</center>
+</BorderPane>
