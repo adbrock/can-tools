@@ -2,6 +2,7 @@ package com.nacco.fxtensions;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.Optional;
 
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
@@ -9,6 +10,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
@@ -72,6 +77,24 @@ public class NetworkView extends AnchorPane {
 		});
 
 		this.getChildren().add(networkTabPane);
+	}
+
+	public Button[] getContextButtons() {
+		Button btnAddNewNode = new Button("1");
+		btnAddNewNode.setOnAction((evt) -> handleAddNodeAction());
+		
+		Button[] btnArray = new Button[1];
+		btnArray[0] = btnAddNewNode;
+		return btnArray;
+	}
+
+	@FXML
+	protected void handleAddNodeAction() {
+		Dialog<ButtonType> addNodeDialog = new AddNodeDialog();
+		Optional<ButtonType> result = addNodeDialog.showAndWait();
+		if (result.isPresent() && result.equals(ButtonType.OK)) {
+
+		}
 	}
 
 	private void addNode(Node node) {

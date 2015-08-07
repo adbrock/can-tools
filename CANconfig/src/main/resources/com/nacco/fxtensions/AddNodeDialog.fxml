@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root xmlns:fx="http://javafx.com/fxml/1" type="Dialog" title="Create Node">
+	<dialogPane>
+		<DialogPane>
+			<buttonTypes>
+				<ButtonType text="OK" buttonData="OK_DONE" />
+				<ButtonType text="Cancel" buttonData="CANCEL_CLOSE" />
+			</buttonTypes>
+			<content>
+				<HBox>
+					<GridPane alignment="center" hgap="10" vgap="10" AnchorPane.topAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0">
+						<padding>
+							<Insets top="25" right="25" bottom="25" left="25" />
+						</padding>
+						<Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+						<TextField fx:id="txtName" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+						<Label text="Node ID:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+						<TextField fx:id="txtId" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+						<Label text="Vendor Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+						<TextField fx:id="txtVendorName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+						<Label text="Vendor Number:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+						<TextField fx:id="txtVendorNumber" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+						<Label text="Product Name:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+						<TextField fx:id="txtProductName" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+						<Label text="Product Number:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+						<TextField fx:id="txtProductNumber" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+						<Label text="Revision Number:" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+						<TextField fx:id="txtRevisionNumber" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+						<Label text="Order Code:" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+						<TextField fx:id="txtOrderCode" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+						<Label text="Granularity:" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+						<TextField fx:id="txtGranularity" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+						<Label text="Supported Receive PDO's:" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+						<Spinner fx:id="spnSupportedReceivePDOs" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+						<Label text="Supported Transmit PDO's:" GridPane.columnIndex="0" GridPane.rowIndex="10" />
+						<Spinner fx:id="spnSupportedTransmitPDOs" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+						<Label text="Supported Dynamic Channels:" GridPane.columnIndex="0" GridPane.rowIndex="11" />
+						<Spinner fx:id="spnSupportedDynamicChannels" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+					</GridPane>
+					<VBox>
+						<padding>
+							<Insets top="25" right="25" bottom="25" left="25" />
+						</padding>
+						<VBox spacing="10" alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
+							<CheckBox fx:id="chkSimpleBootUpMasterSupported" text="Boot Up Master" />
+							<CheckBox fx:id="chkSimpleBootUpSlaveSupported" text="Boot Up Slave" />
+							<CheckBox fx:id="chkGroupMessagingSupported" text="Group Messaging" />
+							<CheckBox fx:id="chklayerSettingServiceSupported" text="Layer Setting Service" />
+						</VBox>
+						<VBox alignment="BOTTOM_CENTER">
+							<Label text="Supported Baudrates" />
+							<TableView fx:id="tblBaudrate" prefHeight="250">
+								<columns>
+									<TableColumn fx:id="clmBaudrate" text="Baudrate">
+									</TableColumn>
+									<TableColumn fx:id="clmSupported" text="Supported?">
+									</TableColumn>
+								</columns>
+							</TableView>
+						</VBox>
+					</VBox>
+				</HBox>
+			</content>
+		</DialogPane>
+	</dialogPane>
+</fx:root>
+

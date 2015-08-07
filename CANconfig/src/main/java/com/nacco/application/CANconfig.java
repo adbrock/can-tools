@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -35,8 +36,8 @@ import com.nacco.fxtensions.NetworkView;
 
 public class CANconfig extends Application {
 	@FXML protected StackPane mainContentPane;
+	@FXML protected HBox contextToolbar;
 
-	private Gson gson;
 	private Gson prettyGson;
 
 	private Stage primaryStage;
@@ -59,7 +60,6 @@ public class CANconfig extends Application {
 
 	@FXML
 	protected void initialize() {
-		gson = createGson();
 		prettyGson = createPrettyGson();
 
 		network = new SimpleObjectProperty<Network>(this, "network", new Network());
@@ -93,7 +93,7 @@ public class CANconfig extends Application {
 		File chosenFile = fileChooser.showSaveDialog(primaryStage);
 		if (chosenFile != null) {
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(chosenFile.getAbsolutePath()), "utf-8"))) {
-				writer.write(gson.toJson(this.network.get()));
+				writer.write(prettyGson.toJson(this.network.get()));
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -109,24 +109,19 @@ public class CANconfig extends Application {
 
 	@FXML
 	protected void handleShowNetworkPerspectiveAction() {
+		contextToolbar.getChildren().clear();
+		contextToolbar.getChildren().addAll(networkView.getContextButtons());
+
 		for (Node node : mainContentPane.getChildren()) {
 			node.setVisible(false);
 		}
 		networkView.setVisible(true);
+
 	}
 
 	@FXML
 	protected void handleCloseAction() {
 		Platform.exit();
-	}
-
-	private Gson createGson() {
-		GsonBuilder builder = new GsonBuilder();
-		builder.registerTypeAdapter(Network.class, new NetworkSerializer());
-		builder.registerTypeAdapter(Node.class, new NodeSerializer());
-		builder.registerTypeAdapter(MainObject.class, new MainObjectSerializer());
-		builder.registerTypeAdapter(SubObject.class, new SubObjectSerializer());
-		return builder.create();
 	}
 
 	private Gson createPrettyGson() {

@@ -10,6 +10,8 @@ import com.nacco.can.model.Node;
 import com.nacco.can.model.SubObject;
 
 public class NetworkViewTest extends Application {
+	
+	private
 
 	public static void main(String[] args) {
 		NetworkViewTest.launch(args);
