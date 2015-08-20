@@ -2,6 +2,8 @@ package com.nacco.can.io;
 
 import java.lang.reflect.Type;
 
+import javafx.util.Pair;
+
 import com.google.gson.JsonArray;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -37,11 +39,11 @@ public class NodeSerializer implements JsonSerializer<Node>, JsonDeserializer<No
 		object.addProperty("layerSettingServiceSupported", src.isLayerSettingServiceSupported());
 		// TODO Leaving out supported Dummy Map for now, may need to be removed.
 
-		JsonObject supportedBaudrateMap = new JsonObject();
-		for (Baudrate baudrate : Baudrate.values()) {
-			supportedBaudrateMap.addProperty(baudrate.toString(), src.getSupportedBaudrateMap().get(baudrate));
+		JsonArray supportedBaudrateList = new JsonArray();
+		for (Pair<Baudrate, Boolean> pair : src.getSupportedBaudrateList()) {
+			supportedBaudrateList.add(context.serialize(pair));
 		}
-		object.add("supportedBaudrateMap", supportedBaudrateMap);
+		object.add("supportedBaudrateMap", supportedBaudrateList);
 
 		JsonArray mainObjectList = new JsonArray();
 		for (MainObject mainObject : src.getMainObjectList()) {
@@ -72,13 +74,9 @@ public class NodeSerializer implements JsonSerializer<Node>, JsonDeserializer<No
 		object.setGroupMessagingSupported(json.getAsJsonObject().get("groupMessagingSupported").getAsBoolean());
 		object.setLayerSettingServiceSupported(json.getAsJsonObject().get("layerSettingServiceSupported").getAsBoolean());
 
-		JsonObject jsonSupportedBaudrateMap = json.getAsJsonObject().get("supportedBaudrateMap").getAsJsonObject();
-		for (Baudrate baudrate : Baudrate.values()) {
-			if (jsonSupportedBaudrateMap.get(baudrate.toString()) != null) {
-				object.getSupportedBaudrateMap().put(baudrate, false);
-			} else {
-				object.getSupportedBaudrateMap().put(baudrate, jsonSupportedBaudrateMap.get(baudrate.toString()).getAsBoolean());
-			}
+		JsonArray jsonSupportedBaudrateList = json.getAsJsonObject().get("supportedBaudrateList").getAsJsonArray();
+		for (JsonElement element : jsonSupportedBaudrateList) {
+			object.getSupportedBaudrateList().add(context.deserialize(element, Pair.class));
 		}
 		
 		JsonArray jsonMainObjectList = json.getAsJsonObject().get("mainObjectList").getAsJsonArray();

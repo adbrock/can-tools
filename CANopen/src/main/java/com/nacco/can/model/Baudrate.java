@@ -11,4 +11,9 @@ public enum Baudrate {
 		}
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return super.toString().substring(1) + "K";
+	}
 }

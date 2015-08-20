@@ -16,6 +16,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
+import javafx.util.Pair;
 
 public class Node {
 	private StringProperty name;
@@ -35,7 +36,7 @@ public class Node {
 	private BooleanProperty groupMessagingSupported;
 	private BooleanProperty layerSettingServiceSupported;
 	private MapProperty<Integer, Boolean> supportedDummyMap;
-	private MapProperty<Baudrate, Boolean> supportedBaudrateMap;
+	private ListProperty<Pair<Baudrate, Boolean>> supportedBaudrateList;
 	private ListProperty<MainObject> mainObjectList;
 
 	public Node() {
@@ -56,8 +57,12 @@ public class Node {
 		groupMessagingSupported = new SimpleBooleanProperty(this, "groupMessagingSupported");
 		layerSettingServiceSupported = new SimpleBooleanProperty(this, "layerSettingServiceSupported");
 		supportedDummyMap = new SimpleMapProperty<Integer, Boolean>(this, "supportedDummyMap", FXCollections.observableHashMap());
-		supportedBaudrateMap = new SimpleMapProperty<Baudrate, Boolean>(this, "supportedBaudrateMap", FXCollections.observableHashMap());
+		supportedBaudrateList = new SimpleListProperty<Pair<Baudrate, Boolean>>(this, "supportedBaudrateList", FXCollections.observableArrayList());
 		mainObjectList = new SimpleListProperty<MainObject>(this, "mainObjectList", FXCollections.observableArrayList());
+
+		for (Baudrate baudrate : Baudrate.values()) {
+			supportedBaudrateList.add(new Pair<Baudrate, Boolean>(baudrate, false));
+		}
 	}
 
 	public String getName() {
@@ -260,12 +265,12 @@ public class Node {
 		return this.supportedDummyMap;
 	}
 
-	public ObservableMap<Baudrate, Boolean> getSupportedBaudrateMap() {
-		return this.supportedBaudrateMap.get();
+	public ObservableList<Pair<Baudrate, Boolean>> getSupportedBaudrateList() {
+		return this.supportedBaudrateList.get();
 	}
 
-	public MapProperty<Baudrate, Boolean> supportedBaudrateMapProperty() {
-		return this.supportedBaudrateMap;
+	public ListProperty<Pair<Baudrate, Boolean>> supportedBaudrateListProperty() {
+		return this.supportedBaudrateList;
 	}
 
 	public ObservableList<MainObject> getMainObjectList() {

@@ -1,12 +1,8 @@
 package com.nacco.fxtensions;
 
-import com.nacco.can.Network;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 

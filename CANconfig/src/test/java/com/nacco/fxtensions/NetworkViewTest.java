@@ -1,7 +1,6 @@
 package com.nacco.fxtensions;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import com.nacco.can.model.MainObject;
@@ -10,8 +9,6 @@ import com.nacco.can.model.Node;
 import com.nacco.can.model.SubObject;
 
 public class NetworkViewTest extends Application {
-	
-	private
 
 	public static void main(String[] args) {
 		NetworkViewTest.launch(args);
@@ -38,10 +35,6 @@ public class NetworkViewTest extends Application {
 		node1.setName("Combi");
 		node2.setName("Traction");
 
-		NetworkView networkView = new NetworkView(network);
-
-		Scene scene = new Scene(networkView);
-		primaryStage.setScene(scene);
 		primaryStage.setTitle("Network View Test");
 		primaryStage.show();
 		
